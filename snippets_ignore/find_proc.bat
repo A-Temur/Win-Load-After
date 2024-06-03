@@ -1,0 +1,1 @@
+tasklist | findstr /B "Razer"
