@@ -1,13 +1,16 @@
-# Startup Load Order Customizer
+# Load After
 
 ## Overview
-Startup Load Order Customizer is a Windows application designed to manage and customize the order in which executables load upon system startup. This tool is especially useful for ensuring that sensitive software, such as Razer Synapse, loads in an environment optimized for its operation—potentially after other critical services like motherboard software have initialized.
+Startup Load Order Customizer is a Windows application designed to manage and customize the order in which executables load upon system startup. 
+This tool is especially useful for ensuring that sensitive software, such as Razer Synapse, loads in an environment optimized for its operation—potentially after other critical services like motherboard software have initialized.
+Besides that this tool will provide you an automatic way of blocking internet access for a third party software and all oft its processes and services.
 
 ## Features
 - **Customizable Load Order:** Set the exact order you want your applications to start when Windows boots up.
 - **Delayed Start:** Introduce a delay between the start of applications to avoid conflicts.
+- **Block Internet Access:** Set up auto blocking of internet access for the third party Software and all related processes/services.
+- **Change the services startups:** Set up how the related services will start (Auto, autodelay, manual, disable)
 - **User-Friendly Interface:** Easily configure your startup settings with a simple and intuitive interface.
-- **Profile Management:** Save different profiles for various configurations, making it easy to switch between custom setups.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
