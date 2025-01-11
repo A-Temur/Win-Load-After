@@ -1,0 +1,1 @@
+Disable-PnpDevice -InstanceId "USB\VID_045E&PID_028E&REV_0110\01" -Confirm:$false

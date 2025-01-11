@@ -1,60 +1,101 @@
-import subprocess
 import sys
+import win32serviceutil
+import win32service
+import win32event
+import servicemanager
+import subprocess
 import time
-import logging
+import configparser
 import os
-from setup_reg import get_reg_value
 
 
-if __name__ == "__main__":
-
-    dir_path = get_reg_value(r"Software\LoadOrder", "LoadOrderInstallDir")
-    logs_path = os.path.join(dir_path, 'logs')
-
-    if not os.path.isdir(logs_path):
-        os.mkdir(logs_path)
-
-    logging.basicConfig(filename=f'{logs_path}/daemon.log', filemode='w',
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                        level=logging.DEBUG)
-
-    logging.info("Starting main")
+#TODO: servicemanager (logs) doesn't work. Find convenient way to add logs to event viewer
 
 
-    def launch_exe(exe_path, time_delay):
+class PythonWinService(win32serviceutil.ServiceFramework):
+    _svc_name_ = 'ProgramMaster200'
+    _svc_display_name_ = 'ProgramMaster200'
+    _svc_description_ = 'Python Service for using LoadAfter feature'
+
+    def __init__(self, args):
+        self.is_running = True
         try:
-            time_delay_int = int(time_delay)
-        except ValueError:
-            logging.error("couldn't convert str", exc_info=True)
-            time_delay_int = 10
-        time.sleep(time_delay_int)
-        """Launch the given executable."""
-        logging.debug("launching executable")
-        logging.debug(f'start "" {sys.argv[-1]} "{exe_path}"')
-        subprocess.Popen(f'start "" {sys.argv[-1]} "{exe_path}"', text=True, shell=True)
+            self.conf = configparser.ConfigParser()
+            self.conf.read(r"D:\PycharmProjects\LoadOrder\service.ini")
+        except Exception as ec:
+            servicemanager.LogErrorMsg(f"Error {str(ec)}\n")
+            self.SvcStop()
+        win32serviceutil.ServiceFramework.__init__(self, args)
+        self.hWaitStop = win32event.CreateEvent(None, 0, 0, None)
 
+    def log_info(self, message:str):
+        servicemanager.LogMsg(
+            servicemanager.EVENTLOG_INFORMATION_TYPE,
+            0xF000,
+            (message,)
+        )
 
-    def wait_for_proc(procname):
-        logging.debug("wait for proc start")
+    def SvcStop(self):
+        self.is_running = False
+        self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
+        win32event.SetEvent(self.hWaitStop)
+
+    def SvcDoRun(self):
+        servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,
+                              servicemanager.PYS_SERVICE_STARTED,
+                              (self._svc_name_, ''))
+        self.main()
+
+    def wait_for_proc(self, procname):
+        self.log_info("wait for proc start")
         fail_counter = 0
         while True:
             if fail_counter >= 36:
                 sys.exit(369)
             result = subprocess.run(f'tasklist | findstr /B "{procname}"', text=True, capture_output=True, shell=True)
             tmp = result.stdout.splitlines()
-            logging.debug(f"process results {tmp}")
+            self.log_info(f"process results {tmp}")
             if len(tmp) >= 1:
                 return True
             fail_counter += 1
-            logging.debug("no process found checking again")
+            self.log_info("no process found checking again")
             time.sleep(5)
 
-    try:
-        proc_name_result = wait_for_proc(sys.argv[1])
-    except Exception:
-        logging.error("Unhandled exception", exc_info=True)
-        sys.exit(444)
+    def launch_exe(self, exe_path, time_delay, priority):
+        try:
+            time_delay_int = int(time_delay)
+        except ValueError:
+            servicemanager.LogErrorMsg("couldn't convert str")
+            time_delay_int = 10
+        time.sleep(time_delay_int)
+        """Launch the given executable."""
+        priority = priority.replace('"', '')
+        self.log_info("launching executable")
+        # self.log_info(f'start "" {priority} "{exe_path}"')
+        # subprocess.run(f'start "" {priority} "{exe_path}"', shell=True)
+        os.startfile(exe_path)
+        self.SvcStop()
 
-    if proc_name_result:
-        launch_exe(sys.argv[2], sys.argv[3])
-        logging.info("Exiting daemon")
+    def main(self):
+        while self.is_running:
+            # React to the stop event
+            if win32event.WaitForSingleObject(self.hWaitStop, 100) == win32event.WAIT_OBJECT_0:
+                self.is_running = False
+                break
+
+            try:
+                proc_name_result = self.wait_for_proc(self.conf["LoadAfter"]["process_load_before"])
+            except Exception as e:
+                servicemanager.LogErrorMsg(f"Unhandled exception {str(e)}")
+                self.SvcStop()
+                break
+
+            if proc_name_result:
+                self.launch_exe(self.conf["LoadAfter"]["process_load_after"], self.conf["LoadAfter"]["process_delay"],
+                                self.conf["LoadAfter"]["process_priority"])
+            self.SvcStop()
+            break
+
+
+if __name__ == '__main__':
+    win32serviceutil.HandleCommandLine(PythonWinService)

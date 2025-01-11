@@ -1,10 +1,15 @@
 import sys
+import time
 import easygui
 import os
 import subprocess
 import pyuac
 import logging
 from setup_reg import set_reg_value
+from configparser import ConfigParser
+
+# todo find additional services/processes through directories of installed application
+
 
 if not os.path.isdir('logs'):
     os.mkdir('logs')
@@ -22,10 +27,13 @@ def main():
         else:
             sys.exit()
 
+    conf = ConfigParser()
+
     proc_name = exit_on_cancel(easygui.enterbox, "Enter Process name (load before). Example: Razer Synapse")
     easygui.msgbox("Now you have to select the .exe file, which should run automatically after the process")
     load_after = exit_on_cancel(easygui.fileopenbox, "Select file to load after the process")
     time_delay = exit_on_cancel(easygui.integerbox, "Specify how much seconds after your file should load")
+    change_priority = easygui.boolbox("do you want to change the cpu priority of the launching process?")
     priority = easygui.buttonbox("Select CPU Priority (Default = Normal)", "CPU Priority",
                                  choices=["/LOW", "/BELOWNORMAL", "/NORMAL", "/ABOVENORMAL", "/HIGH",
                                           "/REALTIME"])
@@ -33,13 +41,14 @@ def main():
                                                   " connection for this application all of its related processes and "
                                                   "services?",
                                                   choices=["YES", "NO"])
-    filter_processes = easygui.enterbox("Enter the Process/Service Name, which begins with. "
-                                        "E.g. \"Razer\" will block all processes and Services which names starts with "
-                                        "Razer (Razer Synapse Software, Razer Centeral...)")
+    if block_outbound_connection == "YES":
+        filter_processes = easygui.enterbox("Enter the Process/Service Name, which begins with. "
+                                            "E.g. \"Razer\" will block all processes and Services which names starts with "
+                                            "Razer (Razer Synapse Software, Razer Centeral...)")
 
-    set_starttype = easygui.buttonbox("Choose the starttype of the process",
-                                      choices=["Don't Change", "Automatic", "AutomaticDelayedStart", "Manual",
-                                               "Disabled"])
+        set_starttype = easygui.buttonbox("Choose the starttype of the services",
+                                          choices=["Don't Change", "Automatic", "AutomaticDelayedStart", "Manual",
+                                                   "Disabled"])
 
     # Get the directory of the current script
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -49,18 +58,30 @@ def main():
     batch_file_path = os.path.join(dir_path, "rundaemon.bat")
     daemon_path = os.path.join(dir_path, "daemon.py")
     block_related_ps_path = os.path.join(dir_path, "block_related_services.ps1")
+    conf_file_path = os.path.join(dir_path, "service.ini")
 
-    with open(batch_file_path, 'w') as file:
-        file.write(f"@echo off\n")
-        file.write(f"""pythonw \"{daemon_path}\" {proc_name} "{load_after}" {time_delay} {priority}\n""")
-        file.write(f"exit")
+    # write to conf file
+    logging.info("read config")
+    try:
+        conf.read(conf_file_path)
+        conf["LoadAfter"]["process_load_before"] = proc_name
+        conf["LoadAfter"]["process_load_after"] = load_after
+        conf["LoadAfter"]["process_delay"] = str(time_delay)
+        conf["LoadAfter"]["process_priority"] = priority
+
+        with open(conf_file_path, 'w') as configfile:  # save
+            configfile.write(conf)
+            logging.info("wrote config")
+    except Exception:
+        logging.error("exce", exc_info=True)
+        sys.exit()
 
     # Create a scheduled task to run the batch file at system startup.
     # firewall_rule_name = f"LoadAfter_{proc_name}"
     # command_firewall_delete = f"netsh advfirewall firewall delete rule name=\"{firewall_rule_name}\""
     # command_firewall_add = (f"netsh advfirewall firewall add rule name=\"{firewall_rule_name}\" "
     #                         f"dir=out action=block program=\"{load_after}\" enable=yes")
-    command_task = f"schtasks /create /sc onlogon /np /tn LoadOrder /tr \"{batch_file_path}\" /rl LIMITED /f"
+    # command_task = f"schtasks /create /sc onlogon /np /tn LoadOrder /tr \"{batch_file_path}\" /rl LIMITED /f"
     try:
         # logging.debug(command_firewall_delete)
         # subprocess.run(command_firewall_delete)
@@ -85,10 +106,16 @@ def main():
 
             # Run the command
             subprocess.run(command, capture_output=False, shell=True)
-        subprocess.run(command_task, check=True, shell=True)
-        easygui.msgbox("Scheduled task created successfully.")
+        # subprocess.run(command_task, check=True, shell=True)
+        # easygui.msgbox("Scheduled task created successfully.")
+        logging.info("trying to run python installer")
+        res = subprocess.run(f"pythonw {daemon_path} install", check=True, shell=True, text=True, capture_output=True)
+        logging.info(res)
+        logging.info("sleeping")
+        time.sleep(5)
+        subprocess.run(f"sc config ProgramMaster200 start= delayed-auto", check=True, shell=True)
     except subprocess.CalledProcessError:
-        logging.error("Failed to create scheduled task", exc_info=True)
+        logging.error("Failed to create service", exc_info=True)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Program Master 2000</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0; /* This also removes any default padding */
+    }
+</style>
+
+     <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+          document.addEventListener('keydown', function(event) {
+              if(event.key === 'Escape') {
+                  pywebview.api.destroy();
+              }
+              else{
+                  pywebview.api.log_keypress(event.key)
+              }
+          });
+      });
+    </script>
+  </head>
+  <body>
+  <div class="MainContainer" style="width: 1920px; height: 1032px; position: relative; background: #AAAAAA">
+  <div class="Titlebar" style="width: 1920px; padding-top: 5px; padding-bottom: 5px; left: 0px; top: 0px; position: absolute; background: #00AAAA; justify-content: center; align-items: center; display: inline-flex">
+    <div class="ProgramMaster2000" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Program Master 2000</div>
+  </div>
+  <div class="SidepanelContainer" style="width: 450px; height: 850px; left: 1455px; top: 85px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+    <div class="ItemspecificContainer" style="align-self: stretch; flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+      <div class="Heading" style="width: 447px; padding-top: 22px; padding-bottom: 22px; border: 3px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="ItemSpecificHelp" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Item Specific Help</div>
+      </div>
+      <div class="MainContents" style="width: 447px; height: 340px; padding-top: 6px; padding-left: 4px; padding-right: 4px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
+        <div class="StrgDChangeFilterLayer" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word"> Strg-D Change <br/> Filter Layer</div>
+        <div class="StrgDChangeFilterLayer" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word"> Strg-D Change <br/> Filter Layer</div>
+      </div>
+    </div>
+    <div class="ContainerspecificContainer" style="align-self: stretch; flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+      <div class="Heading" style="width: 447px; padding-top: 22px; padding-bottom: 22px; border: 3px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="ContainerSpecific" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Container Specific..</div>
+      </div>
+      <div class="MainContents" style="width: 447px; flex: 1 1 0; padding-top: 6px; padding-left: 4px; padding-right: 4px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
+        <div class="DstrgDChangeFilterLayer" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word"> Strg-D Change <br/> Filter Layer</div>
+        <div class="StrgDChangeFilterLayer" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word"> Strg-D Change <br/> Filter Layer</div>
+      </div>
+    </div>
+  </div>
+  <div class="Bottombar" style="width: 1920px; height: 75px; left: 0px; top: 957px; position: absolute; background: #00AAAA; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+    <div class="Frame43" style="align-self: stretch; flex: 1 1 0; justify-content: flex-start; align-items: center; gap: 54px; display: inline-flex">
+      <div class="HelpExit" style="padding-left: 21px; padding-right: 21px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 11px; display: inline-flex">
+        <div class="Help" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div class="F1" style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">F1</div>
+          <div class="Help" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word"> Help</div>
+        </div>
+        <div class="Exit" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div class="Esc" style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Esc</div>
+          <div class="Exit" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Exit</div>
+        </div>
+      </div>
+      <div class="SelectItemContainer" style="padding-left: 21px; padding-right: 21px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 11px; display: inline-flex">
+        <div class="SelectItem" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">↑↓</div>
+          <div class="SelectItem" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Select Item</div>
+        </div>
+        <div class="SelectContainer" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">←→</div>
+          <div class="SelectContainer" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Select Container</div>
+        </div>
+      </div>
+      <div class="FindRefresh" style="padding-left: 21px; padding-right: 21px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 11px; display: inline-flex">
+        <div class="FindInAll" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div class="F3" style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">F3</div>
+          <div class="FindInAll" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Find in All</div>
+        </div>
+        <div class="RefreshAll" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div class="F9" style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">F9</div>
+          <div class="RefreshAll" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Refresh All</div>
+        </div>
+      </div>
+      <div class="LoadSaveexit" style="padding-left: 21px; padding-right: 21px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 11px; display: inline-flex">
+        <div class="LoadProfile" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div class="F11" style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">F11</div>
+          <div class="LoadProfile" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Load Profile</div>
+        </div>
+        <div class="SaveAndExit" style="justify-content: center; align-items: center; gap: 34px; display: inline-flex">
+          <div class="F10" style="color: #E8F7F7; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">F10</div>
+          <div class="SaveAndExit" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Save and Exit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Tabsbar" style="width: 1873px; padding-left: 47px; left: 0px; top: 35px; position: absolute; background: #0000AA; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+    <div class="Main" style="padding-left: 29px; padding-right: 29px; padding-top: 5px; padding-bottom: 5px; background: #AAAAAA; justify-content: center; align-items: center; display: flex">
+      <div class="Main" style="color: #1111AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Main</div>
+    </div>
+    <div class="CustomRules" style="padding-left: 30px; padding-right: 30px; padding-top: 5px; padding-bottom: 5px; background: #0000AA; justify-content: center; align-items: center; display: flex">
+      <div class="CustomRules" style="color: #AAAAAA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Custom Rules</div>
+    </div>
+    <div class="KeybindActions" style="padding-left: 27px; padding-right: 27px; padding-top: 5px; padding-bottom: 5px; background: #0000AA; justify-content: center; align-items: center; display: flex">
+      <div class="KeybindActions" style="color: #AAAAAA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Keybind Actions</div>
+    </div>
+  </div>
+  <div class="ContainerCollections" style="width: 1437px; height: 850px; left: 18px; top: 85px; position: absolute">
+    <div class="ProcessesContainer" style="width: 479px; height: 425px; left: 0px; top: 0px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+      <div class="Frame3" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 145px; padding-right: 146px; border-bottom: 1px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="Processes" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Processes</div>
+      </div>
+      <div class="ProcessesList" style="align-self: stretch; flex: 1 1 0; padding-top: 11px; padding-bottom: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+        <div class="MicrosoftEdge" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Microsoft Edge</div>
+        <div class="AmdAdrenalineSoftw" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">AMD Adrenaline Softw..</div>
+        <div class="Whatsapp" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Whatsapp</div>
+      </div>
+      <div class="Frame17" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 19px; padding-right: 231px; border-top: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div class="SortCpu" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Sort: [CPU]</div>
+      </div>
+    </div>
+    <div class="DriversContainer" style="width: 479px; height: 425px; left: 479px; top: 0px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+      <div class="Frame3" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 167px; padding-right: 166px; border-bottom: 1px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="Drivers" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Drivers</div>
+      </div>
+      <div class="DriversList" style="align-self: stretch; flex: 1 1 0; padding-top: 11px; padding-bottom: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+        <div class="MicrosoftEdge" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Microsoft Edge</div>
+        <div class="AmdAdrenalineSoftw" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">AMD Adrenaline Softw..</div>
+        <div class="Whatsapp" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Whatsapp</div>
+      </div>
+      <div class="Frame17" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 19px; padding-right: 168px; border-top: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div class="FilterNone" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Filter: [None]</div>
+      </div>
+    </div>
+    <div class="EventsContainer" style="width: 479px; height: 425px; left: 958px; top: 0px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+      <div class="Frame3" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; border-bottom: 1px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="Events" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Events</div>
+      </div>
+      <div class="EventsList" style="align-self: stretch; flex: 1 1 0; padding-top: 11px; padding-bottom: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+        <div class="MicrosoftEdge" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Microsoft Edge</div>
+        <div class="AmdAdrenalineSoftw" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">AMD Adrenaline Softw..</div>
+        <div class="Whatsapp" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Whatsapp</div>
+      </div>
+      <div class="Frame17" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 19px; padding-right: 2px; border-top: 1px black solid; justify-content: flex-end; align-items: center; display: inline-flex">
+        <div class="FilterErrorsToday" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Filter:[Errors][Today]</div>
+      </div>
+    </div>
+    <div class="AutostartContainer" style="width: 479px; height: 425px; left: 958px; top: 425px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+      <div class="Frame3" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 146px; padding-right: 145px; border-bottom: 1px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="Autostart" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Autostart</div>
+      </div>
+      <div class="AutostartList" style="align-self: stretch; flex: 1 1 0; padding-top: 11px; padding-bottom: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+        <div class="MicrosoftEdge" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Microsoft Edge</div>
+        <div class="AmdAdrenalineSoftw" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">AMD Adrenaline Softw..</div>
+        <div class="Whatsapp" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Whatsapp</div>
+      </div>
+      <div class="Frame18" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 19px; padding-right: 127px; border-top: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div class="FilterRunning" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Filter:[Running]</div>
+      </div>
+    </div>
+    <div class="ProgramsContainer" style="width: 479px; height: 425px; left: 479px; top: 425px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+      <div class="Frame3" style="align-self: stretch; height: 35px; padding-left: 156px; padding-right: 156px; padding-top: 5px; padding-bottom: 5px; border-bottom: 1px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="Programs" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Programs</div>
+      </div>
+      <div class="ProgramsList" style="align-self: stretch; flex: 1 1 0; padding-top: 11px; padding-bottom: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+        <div class="MicrosoftEdge" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Microsoft Edge</div>
+        <div class="AmdAdrenalineSoftw" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">AMD Adrenaline Softw..</div>
+        <div class="Whatsapp" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Whatsapp</div>
+      </div>
+      <div class="Frame18" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 19px; padding-right: 127px; border-top: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div class="FilterRunning" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Filter:[Running]</div>
+      </div>
+    </div>
+    <div class="ServicesContainer" style="width: 479px; height: 425px; left: 0px; top: 425px; position: absolute; border: 3px #2F3030 solid; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+      <div class="Frame3" style="align-self: stretch; height: 35px; padding-left: 156px; padding-right: 156px; padding-top: 5px; padding-bottom: 5px; border-bottom: 1px black solid; justify-content: center; align-items: center; display: inline-flex">
+        <div class="Services" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Services</div>
+      </div>
+      <div class="ServicesList" style="align-self: stretch; flex: 1 1 0; padding-top: 11px; padding-bottom: 24px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+        <div class="MicrosoftEdge" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Microsoft Edge</div>
+        <div class="AmdAdrenalineSoftw" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">AMD Adrenaline Softw..</div>
+        <div class="Whatsapp" style="color: #0000AA; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Whatsapp</div>
+      </div>
+      <div class="Frame18" style="align-self: stretch; height: 35px; padding-top: 5px; padding-bottom: 5px; padding-left: 19px; padding-right: 127px; border-top: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div class="FilterRunning" style="color: black; font-size: 25px; font-family: Ac437 IBM BIOS; font-weight: 400; word-wrap: break-word">Filter:[Running]</div>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>
