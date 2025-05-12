@@ -23,10 +23,11 @@ def main():
         else:
             sys.exit()
 
-    proc_name = exit_on_cancel(easygui.enterbox, "Enter Process name (load before). Example: Razer Synapse")
-    easygui.msgbox("Now you have to select the .exe file, which should run automatically after the process")
+    proc_name = exit_on_cancel(easygui.enterbox, "Enter Process name (load before). Example: Motherboard Software Process Name (e.g. 'GCC', 'ArmouryCrate'...)."
+                                                 "no full Process Name required, this program will check each running process which 'begins with' your given input (also case insensitive).")
+    easygui.msgbox("Now you have to select the .exe file, which should run automatically after the process (load after). E.g. (select Razer Synapse executable).")
     load_after = exit_on_cancel(easygui.fileopenbox, "Select file to load after the process")
-    time_delay = exit_on_cancel(easygui.integerbox, "Specify how much seconds after your file should load")
+    time_delay = exit_on_cancel(easygui.integerbox, "Specify a delay in seconds between the Process (load before) and the final execution of your selected .exe (load after).")
     # Get the directory of the current script
     dir_path = os.path.dirname(os.path.realpath(__file__))
     # set windows environment var for daemon
