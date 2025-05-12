@@ -1,3 +1,3 @@
 @echo off
-pythonw "D:\PycharmProjects\LoadOrder\daemon.py" GCC.exe "C:\Program Files (x86)\Razer\Synapse3\WPFUI\Framework\Razer Synapse 3 Host\Razer Synapse 3.exe" 60 /NORMAL
+pythonw "D:\PycharmProjects\LoadOrder\prod_zips\LoadAfter_prod_functioning_click_on_vbs_file\LoadAfter\daemon.py" Razer "D:\abdul\Downloads\pycharm-2025.1.1.exe" 1 
 exit

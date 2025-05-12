@@ -1,1 +1,0 @@
-CreateObject("Wscript.Shell").Run "D:\PycharmProjects\LoadOrder\scheduler.bat", 0, True

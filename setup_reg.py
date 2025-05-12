@@ -12,9 +12,6 @@ def get_reg_value(path, name):
 
     Returns:
     The value stored in the registry, or None if the value does not exist.
-
-    Example:
-    dir_path = get_reg_value(r"Software\LoadOrder", "LoadOrderInstallDir")
     """
     try:
         # Open the specified registry key
@@ -40,9 +37,6 @@ def set_reg_value(path, name, value):
     path (str): The registry path under HKCU where the value should be stored.
     name (str): The name of the value to store.
     value (str): The data to store in the registry.
-
-    Example:
-    set_reg_value(r"Software\LoadOrder", "LoadOrderInstallDir", "C:\tmp\loadorder")
     """
     try:
         # Open the specified registry key or create it if it doesn't exist
@@ -55,6 +49,7 @@ def set_reg_value(path, name, value):
     reg.SetValueEx(key, name, 0, reg.REG_SZ, value)
     reg.CloseKey(key)
     logging.info(f"Value '{name}' set in the registry under HKCU\\{path}")
+
 
 # def main():
 #     # Define the registry path, value name, and the data to store
